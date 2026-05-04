@@ -1,0 +1,588 @@
+:root {
+  --primary: #10b981;
+  --bg: #f8fafc;
+  --card-bg: #ffffff;
+  --text: #1e293b;
+  --border: #e2e8f0;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", system-ui, sans-serif;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  padding: 20px;
+}
+
+.app-shell {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* RTL Support */
+.rtl {
+  direction: rtl;
+}
+
+/* Navigation */
+.top-nav {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+.lang-toggle {
+  background: #cbd5e1;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 600;
+  padding: 0 20px;
+  font-size: 0.95rem;
+}
+
+/* Macro Grid - The "Same Level" Magic */
+.macro-grid {
+  display: flex;
+  gap: 15px;
+  align-items: stretch; /* Forces children to have equal height */
+  margin-bottom: 20px;
+}
+
+.rtl .macro-grid {
+  flex-direction: row-reverse;
+}
+
+.macro-subs {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Spreads cards evenly top-to-bottom */
+  gap: 10px;
+}
+
+.main-chart {
+  flex: 1.2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 10px;
+}
+
+/* Cards */
+.card {
+  background: var(--card-bg);
+  padding: 20px;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
+  margin-bottom: 20px;
+}
+
+.card:last-child {
+  margin-bottom: 0;
+}
+
+/* .fade-in {
+  display: flex;
+  flex-direction: column;
+  gap: px; /* This ensures every section has the exact same 20px gap */
+} */
+
+.mini-card {
+  padding: 10px 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Typography & Progress */
+.mini-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #64748b;
+  margin-bottom: 4px;
+}
+
+.mini-val {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+.mini-progress {
+  width: 100%;
+  height: 6px;
+  background: #f1f5f9;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.bar {
+  height: 100%;
+  transition: width 0.5s ease;
+}
+
+/* Pie Chart */
+.pie {
+  --w: 160px;
+  width: var(--w);
+  height: var(--w);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: conic-gradient(var(--c) calc(var(--p) * 1%), #e2e8f0 0);
+}
+
+.pie::before {
+  content: "";
+  position: absolute;
+  width: 80%;
+  height: 80%;
+  background: white;
+  border-radius: 50%;
+}
+
+.pie-content {
+  position: relative;
+  text-align: center;
+}
+
+.pie-content h2 {
+  font-size: 2rem;
+}
+
+/* Forms & Inputs */
+.field-group {
+  margin-bottom: 15px;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  margin-top: 5px;
+  font-size: 1rem;
+}
+
+.row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.mt-10 {
+  margin-top: 10px;
+}
+
+.btn-main {
+  width: 100%;
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 14px;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 15px;
+}
+
+.btn-add {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* Log List */
+.log-list {
+  margin-top: 20px;
+}
+
+.log-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px;
+  background: white;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  border: 1px solid var(--border);
+}
+
+.meal-tag {
+  font-size: 0.7rem;
+  background: #f1f5f9;
+  padding: 2px 6px;
+}
+
+/* Update these sections in styles.css */
+
+.food-form {
+  display: flex;
+  flex-direction: column;
+  /* Increase this gap for more breathing room between the rows */
+  gap: 18px; 
+  padding: 20px;
+}
+
+/* This ensures the individual rows inside the form also have a nice gap */
+.form-row {
+  display: flex;
+  gap: 12px; 
+  align-items: center;
+  width: 100%;
+}
+
+/* Search bar on its own line for better focus */
+.food-form .search-row {
+  width: 100%;
+}
+
+/* Action row for quantity and adding */
+.food-form .action-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 8px;
+  align-items: center;
+}
+
+/* Ensure the input, select, and button have identical vertical padding and line-height */
+.food-form input,
+.food-form select,
+.btn-add {
+  height: 45px; /* Set a fixed height for perfect alignment */
+  margin: 0; /* Remove any default margins that might push it out of line */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-add {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 0 20px; /* Horizontal padding only since height is fixed */
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  white-space: nowrap; /* Prevents text from wrapping */
+  flex-shrink: 0; /* Prevents the button from squishing */
+}
+
+.btn-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: var(--primary);
+  color: white;
+
+  /* PERFECT CENTERING LOGIC */
+  display: flex; /* Turns on flexbox */
+  align-items: center; /* Centers vertically */
+  justify-content: center; /* Centers horizontally */
+
+  /* FIXING THE TYPOGRAPHY */
+  font-size: 1.8rem; /* Adjust size as needed */
+  line-height: 0; /* Removes the extra "letter space" at the bottom */
+  padding: 0; /* Ensures no internal padding is pushing the sign */
+
+  cursor: pointer;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 3px;
+}
+
+.water-card .row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.water-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Keeps everything spread out evenly */
+  gap: 10px;
+  flex-wrap: wrap; /* Prevents elements from flying off-screen on small phones */
+  padding: 5px 0;
+}
+
+.water-row input {
+  width: 70px; /* Specific width for the number input */
+  text-align: center;
+}
+
+.water-row select {
+  flex: 1; /* Allows the unit dropdown to take up remaining space */
+  min-width: 80px;
+}
+
+.water-display {
+  min-width: 60px;
+  text-align: left; /* Keeps the '0.0 ml' steady */
+  font-weight: bold;
+}
+
+.water-val {
+  font-weight: 500;
+  white-space: nowrap; /* Keeps "0.0 ml" on one line */
+  min-width: px;
+}
+
+
+/* Animation for when a goal is updated */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.pulse-animation {
+  animation: pulse 0.4s ease-in-out;
+}
+
+/* Color Psychology for progress bars */
+.progress-bar {
+  transition: width 0.5s ease, background-color 0.5s ease;
+}
+
+.progress-safe { background-color: #10b981; } /* Green */
+.progress-warning { background-color: #f59e0b; } /* Amber */
+.progress-over { background-color: #ef4444; } /* Red */
+
+.history-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.history-item:last-child { border-bottom: none; }
+
+.history-info { display: flex; flex-direction: column; gap: 2px; }
+.history-info span { font-size: 0.85rem; color: #64748b; }
+.history-cals { font-weight: bold; color: var(--primary); }
+
+/* The Calendar Button */
+.btn-calendar {
+  background: white;
+  border: 1px solid #e2e8f0;
+  padding: 8px 16px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  transition: all 0.2s;
+  width: 42px;
+  font-size: 1.2rem;
+}
+
+
+/* Hover Effect: Goes lighter just like your history button */
+.lang-toggle:hover, .btn-calendar:hover {
+  background-color: #f8fafc; /* Lighter shade */
+  transform: translateY(-1px); /* Subtle lift */
+}
+
+/* Active/Press effect */
+.lang-toggle:active, .btn-calendar:active {
+  background-color: #ffffff;
+  transform: translateY(0);
+}
+
+/* History Page Layout */
+.history-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.btn-back {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.full-date-input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+.diary-entry {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 0;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.entry-main {
+  display: flex;
+  flex-direction: column;
+}
+
+.entry-main span {
+  font-size: 0.8rem;
+  color: #3b82f6;
+  font-weight: bold;
+}
+
+/* This ensures the title aligns correctly based on language direction */
+.card-header h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.rtl .card-header h3 {
+  flex-direction: row; /* Keeps emoji first, then text, but aligned right by the container */
+  justify-content: flex-start;
+}
+
+/* English Mode (Default) */
+.top-nav {
+  display: flex;
+  gap: 12px;
+  padding: 15px;
+  /* Aligns to left by default, flips to right in RTL */
+}
+
+/* Arabic Mode (When .rtl class is active) */
+.rtl .top-nav {
+  flex-direction: row-reverse; /* Flips the order of buttons */
+  justify-content: flex-start; /* Aligns to the right in RTL context */
+}
+
+
+
+/* Optional: Make the buttons look uniform */
+.lang-toggle, .btn-calendar {
+  /* This ensures they are the exact same height */
+  height: 42px; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  border: none;
+  border-radius: 12px;
+  background-color: #f1f5f9; /* Soft background */
+  color: #1e293b;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+
+.btn-calendar {
+  width: 45px; /* Makes it a nice square icon button */
+}
+
+.search-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.search-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-top: none;
+  border-radius: 0 0 12px 12px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  z-index: 999; /* Ensures it stays on top of everything */
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  max-height: 250px;
+  overflow-y: auto;
+}
+
+.search-dropdown li {
+  padding: 12px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.search-dropdown li:hover {
+  background-color: #f0f7ff;
+}
+
+.search-dropdown li small {
+  color: #a0a0a0;
+  font-size: 0.8em;
+}
+
+/* RTL Support for Arabic search */
+.rtl .search-dropdown li {
+  flex-direction: row-reverse;
+}
+.dropdown-list {
+  position: absolute;
+  top: 100%; /* Appears exactly below the input */
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 1000; /* Ensures it sits on top of everything */
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.dropdown-item {
+  padding: 12px;
+  cursor: pointer;
+  border-bottom: 1px solid #f1f5f9;
+  text-align: inherit; /* Respects RTL/LTR */
+  transition: background 0.2s;
+}
+
+.dropdown-item:hover {
+  background-color: #f8fafc;
+  color: #3b82f6;
+}
+
+.dropdown-item:last-child {
+  border-bottom: none;
+}
